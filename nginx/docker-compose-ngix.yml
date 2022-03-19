@@ -1,0 +1,12 @@
+version: "3.7"
+volumes:
+  default:
+  wsb-cloud_db_volume:
+
+services:
+  nginx:
+    build: .
+    ports:
+      - 1337:80
+    depends_on:
+      - backend

@@ -1,2 +1,2 @@
 # wsb-cloud
-wsb-cloud-project
+Projekt służący do przewidywania pogody w dodanej przez nas destynacji.

@@ -1,0 +1,10 @@
+[http.middlewares.simpleAuth.basicAuth]
+  users = [
+    "admin:admin"
+  ]
+
+[http.routers.api]
+  rule = "Host(`fastapi.localhost`)"
+  entrypoints = ["web"]
+  middlewares = ["simpleAuth"]
+  service = "api@internal"

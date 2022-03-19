@@ -1,0 +1,18 @@
+version: "3.7"
+
+networks:
+  web:
+    external: true
+
+services:
+  traefik:
+    image: "traefik:v2.5"
+    container_name: "traefik"
+    ports:
+      - "80:80"
+    networks:
+      - web
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik.prod.toml:/traefik.toml"
+      - "./traefik_dynamic.toml:/traefik_dynamic.toml"

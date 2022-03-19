@@ -1,0 +1,41 @@
+version: "3.7"
+volumes:
+  default:
+  wsb-cloud_db_volume:
+
+# x-extension fields
+x-env_file: &env_file
+  env_file:
+    - ./.env
+
+x-base:
+  &base
+  build: .
+  volumes:
+    - .:/app
+
+services:
+  backend:
+    <<: *base
+    container_name: wsb-cloud-backend
+    build:
+      context: .
+      dockerfile: ../Dockerfile.prod
+    command: gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:8000
+    expose:
+      - 8000
+    depends_on:
+      - db
+
+  db:
+    <<: *env_file
+    container_name: wsb-cloud-db
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: wsb-cloud
+    volumes:
+      - wsb-cloud_db_volume:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"

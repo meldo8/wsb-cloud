@@ -1,0 +1,15 @@
+fastapi==0.68.1
+uvicorn==0.15.0
+starlette
+requests==2.26.0
+types-requests==2.26.1
+pydantic==1.8.2
+gunicorn==20.1.0
+psycopg2-binary
+alembic
+sqlalchemy==1.4.28
+sqlalchemy2-stubs==0.0.2a19
+rollbar
+gunicorn==20.1.0
+mypy==v0.910
+python-decouple==3.4
